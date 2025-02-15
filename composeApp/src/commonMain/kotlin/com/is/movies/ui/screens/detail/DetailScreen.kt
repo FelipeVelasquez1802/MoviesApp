@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.`is`.movies.movies
+import com.`is`.movies.Movie
 import com.`is`.movies.ui.screens.Screen
 import moviesapp.composeapp.generated.resources.Res
 import moviesapp.composeapp.generated.resources.back
@@ -28,15 +28,14 @@ import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun DetailScreen(modifier: Modifier = Modifier) {
-    val movie = movies.first()
+internal fun DetailScreen(movie: Movie, onBack: () -> Unit) {
     Screen {
         Scaffold(
             topBar = {
                 TopAppBar(
                     title = { Text(movie.title) },
                     navigationIcon = {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = onBack) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = stringResource(Res.string.back)
