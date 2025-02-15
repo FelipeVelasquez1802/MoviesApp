@@ -1,4 +1,4 @@
-package org.`is`.project
+package com.`is`.movies
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

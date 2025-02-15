@@ -1,4 +1,4 @@
-package org.`is`.project
+package com.`is`.movies
 
 import androidx.compose.ui.window.ComposeUIViewController
 
