@@ -1,4 +1,4 @@
-package com.`is`.movies
+package com.`is`.movies.data
 
 data class Movie(
     val id: Int,

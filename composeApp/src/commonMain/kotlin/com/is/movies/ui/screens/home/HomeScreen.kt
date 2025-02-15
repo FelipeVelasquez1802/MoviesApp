@@ -26,10 +26,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
-import com.`is`.movies.Movie
-import com.`is`.movies.movies
+import com.`is`.movies.data.Movie
+import com.`is`.movies.ui.common.LoadingIndicator
 import com.`is`.movies.ui.screens.Screen
 import moviesapp.composeapp.generated.resources.Res
 import moviesapp.composeapp.generated.resources.app_name
@@ -40,7 +39,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 internal fun HomeScreen(
     onMovieClick: (Movie) -> Unit,
-    viewModel: HomeViewModel = viewModel { HomeViewModel() }
+    viewModel: HomeViewModel,
 ) {
     Screen {
         val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -54,14 +53,7 @@ internal fun HomeScreen(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         ) { padding ->
             val state = viewModel.state
-            if (state.loading) {
-                Box(
-                    modifier = Modifier.fillMaxSize().padding(padding),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator()
-                }
-            }
+            LoadingIndicator(enabled = state.loading)
             LazyVerticalGrid(
                 columns = GridCells.Adaptive(120.dp),
                 contentPadding = PaddingValues(4.dp),
